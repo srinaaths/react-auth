@@ -7,6 +7,8 @@ const App = () => {
 	const [passwordReg, setPasswordReg] = useState('')
 	const [password, setPassword] = useState('')
 	const [loginStatus, setLoginStatus] = useState(false)
+	const [isAuthenticated, setIsAuthenticated] = useState(false)
+
 	const usernameRegUpdate = (event) => {
 		setUsernameReg(event.target.value)
 	}
@@ -63,6 +65,9 @@ const App = () => {
 		}
 		)
 		console.log(res);
+		if(res.data.isAuthenticated) {
+			setIsAuthenticated(true)
+		}
 	}
 	return (
 		<div>
@@ -85,6 +90,9 @@ const App = () => {
 			{/* <h1>{loginStatus && <div>lol</div>}</h1> */}
 			<h2>{loginStatus && (
 				<button onClick={userAuthenticated}>Check if authenticated</button>
+			)}</h2>
+			<h2>{isAuthenticated && (
+				<a href='www.google.com'>add movie</a>
 			)}</h2>
 		</div>
 	)

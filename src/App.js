@@ -3,14 +3,15 @@ import LoginLogout from "./LoginLogout"
 import Profile from "./Profile"
 import ProtectedRoute from "./ProtectedRoute"
 
-const App = ({isAuthenticated}) => {
+const App = ({ isAuthenticated }) => {
 	const [isAuth, setIsAuth] = useState(false)
-	// if(isAuthenticated)
+	// if (isAuthenticated) {
+	// 	console.log(isAuthenticated + ' is true');
 	// 	setIsAuth(true)
+	// }
 	return (
 		<div>
 			<LoginLogout />
-				<ProtectedRoute path='/profile' component={Profile} isAuth= {isAuth}/>
 		</div>
 	)
 }

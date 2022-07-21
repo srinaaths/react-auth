@@ -1,9 +1,13 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 function Profile() {
   return (
-    <div>Authenticated</div>
+    <div>
+        {console.log('in profile')}
+        authenticated
+    </div>
   )
 }
 
-export default Profile
+export default withRouter(Profile)

@@ -3,6 +3,8 @@ import axios from 'axios'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import Auth from "./Auth"
 import App from "./App"
+import AuthPage from "./AuthPage"
+import store from "./redux-components/store"
 
 const LoginLogout = () => {
 
@@ -51,16 +53,26 @@ const LoginLogout = () => {
 			const res = await axios.post('http://localhost:8080/loginuser', user)
 			console.log(res);
 			console.log(res.data.auth)
-			if (!res.data.auth)
+			if (!res.data.auth) {
 				setLoginStatus(false)
+                setIsAuthenticated(false)
+                store.dispatch({type: 'USER_LOGOUT'})
+            }
 			else {
 				setLoginStatus(true)
 				localStorage.setItem('token', res.data.token)
+                userAuthenticated();
 			}
 		} catch (error) {
 			console.log(error);
 		}
 	}
+	const logoutFunction = async () => {
+        console.log('called');
+        store.dispatch({type: 'USER_LOGOUT'})
+        console.log(store.getState());
+        setIsAuthenticated(false)
+    }
 	const userAuthenticated = async () => {
 		const res = await axios.get('http://localhost:8080/isuserauth'
 			,
@@ -74,7 +86,21 @@ const LoginLogout = () => {
 		if (res.data.isAuthenticated) {
 			userIdentity = res.data.userId
 			setIsAuthenticated(true)
+            store.dispatch({
+                type: 'USER_LOGIN',
+                payload: {
+                    id: res.data.userId,
+                    token: localStorage.getItem('token'),
+                    authStatus: true
+                }
+            })
+            console.log(store.getState());
 		}
+        else {
+            console.log('auth set to false');
+            setIsAuthenticated(false)
+            store.dispatch({type: 'USER_LOGOUT'})
+        }
 	}
 	return (
 		<div>
@@ -84,7 +110,7 @@ const LoginLogout = () => {
 				<input type="text" onChange={usernameRegUpdate} /> <br /> <br />
 				<label htmlFor="">Password</label>
 				<input type="password" onChange={passwordRegUpdate} /> <br /> <br />
-				<input type="submit" />
+				<input type="submit" value="Register"/>
 			</form>
 			<h2> Login</h2>
 			<form action="" onSubmit={(e) => userCheck(e)}>
@@ -92,14 +118,12 @@ const LoginLogout = () => {
 				<input type="text" onChange={usernameUpdate} /> <br /> <br />
 				<label htmlFor="">Password</label>
 				<input type="password" onChange={passwordUpdate} /> <br /> <br />
-				<input type="submit" />
+				<input type="submit" value="Login" />
 			</form>
-			{/* <h1>{loginStatus && <div>lol</div>}</h1> */}
-			<h2>{loginStatus && (
-				<button onClick={userAuthenticated}>Check if authenticated</button>
-			)}</h2>
-
-            <div>(isAuthenticated && <App isAuthenticated/>)</div>
+            {console.log(isAuthenticated)}
+            {console.log(store.getState())}
+            <div>{isAuthenticated && <AuthPage isAuthenticated />}</div>
+            <div>{isAuthenticated && <button onClick={logoutFunction}>Logout</button>}</div>
 		</div>
 	)
 }

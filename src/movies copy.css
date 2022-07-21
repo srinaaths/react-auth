@@ -1,0 +1,14 @@
+:root {
+    background-color: black;
+}
+
+.movies-list-class {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search {
+    width: 25%;
+    padding: 15px;
+}

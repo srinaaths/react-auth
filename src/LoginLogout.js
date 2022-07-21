@@ -1,11 +1,12 @@
 import { useState } from "react"
 import axios from 'axios'
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom"
+import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom"
 import Auth from "./Auth"
 import App from "./App"
 import AuthPage from "./AuthPage"
 import store from "./redux-components/store"
 import MoviesRatingPage from "./MoviesRatingPage"
+import './loginLogout.css'
 
 const LoginLogout = () => {
 
@@ -104,31 +105,35 @@ const LoginLogout = () => {
         }
     }
     return (
-        <div>
-            <h2> Registration</h2>
-            <form action="" onSubmit={(e) => submitFunction(e)}>
-                <label htmlFor="">Name</label>
-                <input type="text" onChange={usernameRegUpdate} /> <br /> <br />
-                <label htmlFor="">Password</label>
-                <input type="password" onChange={passwordRegUpdate} /> <br /> <br />
-                <input type="submit" value="Register" />
-            </form>
-            <h2> Login</h2>
-            <form action="" onSubmit={(e) => userCheck(e)}>
-                <label htmlFor="">Name</label>
-                <input type="text" onChange={usernameUpdate} /> <br /> <br />
-                <label htmlFor="">Password</label>
-                <input type="password" onChange={passwordUpdate} /> <br /> <br />
-                <input type="submit" value="Login" />
-            </form>
-            {console.log(isAuthenticated)}
-            {console.log(store.getState())}
+        <div className="main-container-class">
             <Router>
-                <Route path='/movieslist' component={MoviesRatingPage}></Route>
+                <form action="" className="reg-form-class" onSubmit={(e) => submitFunction(e)}>
+                    <h2> Registration</h2>
+                    <div className="user-input-class">
+                        <label htmlFor="">Name</label>
+                        <input type="text" onChange={usernameRegUpdate} /> <br /> <br />
+                    </div>
+                    <div className="user-input-class">
+                    <label htmlFor="">Password</label>
+                    <input type="password" onChange={passwordRegUpdate} /> <br /> <br />
+                    </div>
+                    <input type="submit" value="Register" />
+                </form>
+                <h2> Login</h2>
+                <form action="" className="login-form-class" onSubmit={(e) => userCheck(e)}>
+                    <label htmlFor="">Name</label>
+                    <input type="text" onChange={usernameUpdate} /> <br /> <br />
+                    <label htmlFor="">Password</label>
+                    <input type="password" onChange={passwordUpdate} /> <br /> <br />
+                    <input type="submit" value="Login" />
+                </form>
+                {console.log(isAuthenticated)}
+                {console.log(store.getState())}
+                <Route exact path='/movieslist' component={MoviesRatingPage}></Route>
                 {isAuthenticated && <Redirect to='/movieslist' />}
+                <div>{isAuthenticated && <AuthPage isAuthenticated />}</div>
+                <div>{isAuthenticated && <button onClick={logoutFunction}>Logout</button>}</div>
             </Router>
-            <div>{isAuthenticated && <AuthPage isAuthenticated />}</div>
-            <div>{isAuthenticated && <button onClick={logoutFunction}>Logout</button>}</div>
         </div>
     )
 }

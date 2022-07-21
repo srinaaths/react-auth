@@ -9,7 +9,7 @@ const reducer = (state = null, action) => {
         case 'USER_LOGIN':
             console.log('in login');
             return {
-              id: action.payload.id,  
+              id: action.payload.id,
               isAdmin: action.payload.isAdmin,  
               authStatus: action.payload.authStatus,  
               token: action.payload.token,  

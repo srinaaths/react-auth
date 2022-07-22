@@ -3,3 +3,9 @@
     color: black;
     border: 2px solid white;
 }
+
+.movie-container-class {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}

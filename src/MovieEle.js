@@ -9,9 +9,8 @@ const MovieEle = ({ movie }) => {
     setEnabled(true)
   }
   return (
-    <div>
-      <button className='movie' onClick={e => clickFunction(e)}>{movie.name}</button>
-      {/* {enabled && (<div><input type="text" placeholder='review'></input></div>)} */}
+    <div className='movie-container-class'>
+      <button className='movie' onClick={e => clickFunction(e)}><img src={require("./movie.jpeg")} height='50' width='50' alt="" /> {movie.name}</button>
       {enabled && (<MovieRating movie={movie} />)}
     </div>
   )

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 const MovieRating = ({movie}) => {
+    console.log(movie);
     const [movies, setMovies] = useState([])
     const [rating, setRating] = useState(0)
     const [review, setReview] = useState('')
@@ -8,6 +9,7 @@ const MovieRating = ({movie}) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [moviesPerPage, setMoviessPerPage] = useState(10)
     const submitRating = async() => {
+        console.log('movieId is ' + movieId);
         const data = {
           rating: rating,
           review: review,

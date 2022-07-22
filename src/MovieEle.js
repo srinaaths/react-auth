@@ -10,8 +10,10 @@ const MovieEle = ({ movie }) => {
   }
   return (
     <div className='movie-container-class'>
-      <button className='movie' onClick={e => clickFunction(e)}><img src={require("./movie.jpeg")} height='50' width='50' alt="" /> {movie.name}</button>
-      {enabled && (<MovieRating movie={movie} />)}
+      {/* <button className='movie' onClick={e => clickFunction(e)}><img src={require("./movie.jpeg")} height='50' width='50' alt="" /> {movie.name}</button> */}
+      <button className='movie' onClick={e => clickFunction(e)}><img src='https://picsum.photos/200/300?random'
+ height='150' width='150' alt="" /> {movie.name}</button>
+      {enabled && <MovieRating movie={movie} />}
     </div>
   )
 }

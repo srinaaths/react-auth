@@ -1,25 +1,17 @@
-import { useState } from "react"
 import axios from 'axios'
-import { BrowserRouter as Router, Route, Link, Redirect, Switch} from "react-router-dom"
-import Auth from "./Auth"
-import App from "./App"
-import AuthPage from "./AuthPage"
-import store from "./redux-components/store"
-import MoviesRatingPage from "./MoviesRatingPage"
-import './loginLogout.css'
-import AppMain from "./AppMain"
-import Registration from "./Registration"
-import Login from "./Login"
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import AppMain from './AppMain'
+import store from './redux-components/store'
 
-const LoginLogout = () => {
-
+const Login = () => {
     const [usernameReg, setUsernameReg] = useState('')
     const [username, setUsername] = useState('')
     const [passwordReg, setPasswordReg] = useState('')
     const [password, setPassword] = useState('')
     const [loginStatus, setLoginStatus] = useState(false)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-
+    
     let userIdentity = null;
 
     const usernameRegUpdate = (event) => {
@@ -107,30 +99,30 @@ const LoginLogout = () => {
             store.dispatch({ type: 'USER_LOGOUT' })
         }
     }
-    return (
-        <div className="main-container-class">
-            <Router>
-                <Link to='/register'>Click to register</Link>
-                <Link to='/login'>Click to Login</Link>
-                <Route path='/register' component={Registration}></Route>
-                <Route path='/login' component={Login}></Route>
-                {/* {console.log(isAuthenticated)}
-                {console.log(store.getState())}
-                <Route exact path='/movieslist' component={MoviesRatingPage}></Route>
-                {isAuthenticated && <Redirect to='/movieslist' />}
-                <div>{isAuthenticated && <AuthPage isAuthenticated />}</div>
-                <div>{isAuthenticated && <button onClick={logoutFunction}>Logout</button>}</div> */}
-                <div>hi</div>
-                <div>{store.getState() && 
+  return (
+    <div>
+    {!isAuthenticated ? 
+   (             <div>
+                <h2> Login</h2>
+                <form action="" className="login-form-class" onSubmit={(e) => userCheck(e)}>
+                    <label htmlFor="">Name</label>
+                    <input type="text" onChange={usernameUpdate} /> <br /> <br />
+                    <label htmlFor="">Password</label>
+                    <input type="password" onChange={passwordUpdate} /> <br /> <br />
+                    <input type="submit" value="Login" />
+                </form>
+</div>)
+ : 
+                <div>{isAuthenticated && 
                     <Router>
                         {console.log('hitting')}
                         <Route path='/' component={AppMain}></Route>
                         <Link to='/'>Go to home page</Link>
                     </Router>
                 }</div>
-            </Router>
-        </div>
-    )
+            }
+                </div>
+  )
 }
 
-export default LoginLogout
+export default Login

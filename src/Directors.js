@@ -20,7 +20,6 @@ const Directors = () => {
     }, [])
     const changeFunction = (e) => {
         setSelectedDirector(e.target.value)
-        console.log('selected vallll is ' + e.target.value);
         // try {
         //     const preUrl = 'http://localhost:8080/getMoviesByDirector/';
         //     const url = preUrl + selectedDirector;
@@ -34,7 +33,8 @@ const Directors = () => {
         console.log('selected dir is ' + selectedDirector);
         try {
             const preUrl = 'http://localhost:8080/getMoviesByDirector/';
-            const url = preUrl + selectedDirector;
+            const url = (selectedDirector != '') ? (preUrl + selectedDirector) : directors ? (preUrl + directors[0].name) : 'null';
+            console.log(url);
             const res = await axios.get(url);
             setMoviesByDirector(res.data);
             console.log(res.data);
@@ -44,9 +44,9 @@ const Directors = () => {
     }
     return (
         <div>
-            <select onChange={(e) =>{
+            <select onChange={(e) => {
                 changeFunction(e)
-                }}>
+            }}>
                 {directors.map(director => {
                     return (
 
@@ -55,10 +55,10 @@ const Directors = () => {
                     )
                 })}
             </select>
-                <input type="submit" value='Get Movies' onClick={fetchMoviesByDirector}/>
+            <input type="submit" value='Get Movies' onClick={fetchMoviesByDirector} />
             <div>
                 {moviesByDirector.map(movie => {
-                    return <MovieEle key = {movie.id} movie = {movie}></MovieEle>
+                    return <MovieEle key={movie.id} movie={movie}></MovieEle>
                 })}
             </div>
         </div>

@@ -14,7 +14,7 @@ const App = ({ isAuthenticated }) => {
 	return (
 		<div>
 			<LoginLogout />
-			<AddRating />
+			{/* <AddRating /> */}
        {/* {(store.getState() != null && store.getState().authStatus) && <AddRating />}
 	   {console.log('log check')}
 	   {console.log(store.getState() != null && store.getState().authStatus)}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Axios from 'axios';
 import MovieEle from './MovieEle';
 import './movies.css'
+import './movieSearch.scss'
 
 function MovieSearch() {
     const [movies, setMovies] = useState([])
@@ -19,6 +20,7 @@ function MovieSearch() {
     return (
         <div className='movies-list-class'>
             <input type="text" className='search' placeholder='Search' onChange={e => updateSearchTerm(e)}/>
+            <div> 
             {movies.filter(movie => {
                 // movie.name.toLowerCase().includes(searchText.toLowerCase())
                 return (searchText === '' || movie.name.toLowerCase().includes(searchText.toLowerCase()) )
@@ -29,6 +31,7 @@ function MovieSearch() {
                         <MovieEle key={movie.id} movie={movie}></MovieEle>
                 )
             })}
+            </div>
         </div>
     )
 }

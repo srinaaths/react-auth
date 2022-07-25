@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import AppMain from './AppMain'
 import store from './redux-components/store'
+import './Login.css'
+import './login.scss'
+
 
 const Login = () => {
     const [usernameReg, setUsernameReg] = useState('')
@@ -100,16 +103,20 @@ const Login = () => {
         }
     }
   return (
-    <div>
+    <div className='main-container-class'>
     {!isAuthenticated ? 
    (             <div>
-                <h2> Login</h2>
-                <form action="" className="login-form-class" onSubmit={(e) => userCheck(e)}>
+                <form action="" className="reg-form-class" onSubmit={(e) => userCheck(e)}>
+                <h2 > Login</h2>
+                    <div className="user-input-class">
                     <label htmlFor="">Name</label>
                     <input type="text" onChange={usernameUpdate} /> <br /> <br />
+</div>
+                    <div className="user-input-class">
                     <label htmlFor="">Password</label>
                     <input type="password" onChange={passwordUpdate} /> <br /> <br />
-                    <input type="submit" value="Login" />
+</div>
+                    <input class='submit-button' type="submit" value="Login" />
                 </form>
 </div>)
  : 

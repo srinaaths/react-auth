@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import DirectorItem from './DirectorItem'
 import MovieEle from './MovieEle'
+import './Directors.scss'
 
 const Directors = () => {
     const [directors, setDirectors] = useState([])
@@ -43,8 +44,8 @@ const Directors = () => {
         }
     }
     return (
-        <div>
-            <select onChange={(e) => {
+        <div className='main-container-class'>
+            <select className='options-class' onChange={(e) => {
                 changeFunction(e)
             }}>
                 {directors.map(director => {
@@ -55,8 +56,8 @@ const Directors = () => {
                     )
                 })}
             </select>
-            <input type="submit" value='Get Movies' onClick={fetchMoviesByDirector} />
-            <div>
+            <input className='submit-class' type="submit" value='Get Movies' onClick={fetchMoviesByDirector} />
+            <div className='movie-container'>
                 {moviesByDirector.map(movie => {
                     return <MovieEle key={movie.id} movie={movie}></MovieEle>
                 })}

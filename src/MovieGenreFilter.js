@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import MovieEle from './MovieEle'
+import './MovieGenreFilter.css'
 
 const MovieGenreFilter = () => {
     const [movies, setMovies] = useState([])
@@ -11,10 +12,14 @@ const MovieGenreFilter = () => {
             const res = await axios.get('http://localhost:8080/')
             setMovies(res.data)
         }
+        const genreList = async () => {
+            const res = await axios.get('http://localhost:8080/')
+            setMovies(res.data)
+        }
         fetchMovies();
     }, [])
 
-    const filterByGenre = async() => {
+    const filterByGenre = async () => {
         const prefixUrl = 'http://localhost:8080/getMoviesByGenre/'
         const selectedGenre = genre;
         const url = prefixUrl + selectedGenre;
@@ -31,19 +36,21 @@ const MovieGenreFilter = () => {
     }
 
     return (
-        <div>
+        <div className='main-container-class'>
             {console.log(movies)}
             {console.log(moviesByGenre)}
             {/* <input type="text" onChange={e => genreChange(e)}/> */}
-            <select name="" id="" onChange={e => genreChange(e)}>
+            <select className='options-class' name="" id="" onChange={e => genreChange(e)}>
                 <option value="Adventure">Adventure</option>
                 <option value="Action">Action</option>
                 <option value="Drama">Drama</option>
                 <option value="Comedy">Comedy</option>
                 <option value="Thriller">Thriller</option>
             </select>
-            <input type="submit" onClick = {filterByGenre}/>
-            {moviesByGenre.map(movie => {return(<MovieEle key={movie.id} movie={movie}></MovieEle>)})}
+            <div className="movie-container">
+                <input className='submit-class' value='Search Movies' type="submit" onClick={filterByGenre} />
+                {moviesByGenre.map(movie => { return (<MovieEle key={movie.id} movie={movie}></MovieEle>) })}
+            </div>
         </div>
     )
 }

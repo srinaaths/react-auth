@@ -1,0 +1,41 @@
+/* :root {    
+    background-color: rgb(112, 109, 109);
+}
+
+.div-main-class {
+    display: flex;
+    justify-content: space-around;
+}
+
+.link-class {
+    border: 1px solid brown;
+    background-color: burlywood;
+    padding: 15px;
+    text-decoration: none;
+    height: 20px;
+    margin: 15px;
+}
+
+.link-class:hover {
+    background-color: aqua;
+    transition: background-color 1s;
+}
+
+.main-header-class {
+}
+
+.main-container-class {
+    display: flex;
+    flex-direction: column;
+} */
+
+.bg-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    img {
+        height: 100vh;
+        width: 100vw;
+    }
+}

@@ -6,7 +6,7 @@ import App from "./App"
 import AuthPage from "./AuthPage"
 import store from "./redux-components/store"
 import MoviesRatingPage from "./MoviesRatingPage"
-import './loginLogout.css'
+import './loginLogout.scss'
 import AppMain from "./AppMain"
 import Registration from "./Registration"
 import Login from "./Login"
@@ -110,8 +110,8 @@ const LoginLogout = () => {
     return (
         <div className="main-container-class">
             <Router>
-                <Link to='/register'>Click to register</Link>
-                <Link to='/login'>Click to Login</Link>
+                <Link className="link-class" to='/register'>Register</Link>
+                <Link className="link-class" to='/login'>Login</Link>
                 <Route path='/register' component={Registration}></Route>
                 <Route path='/login' component={Login}></Route>
                 {/* {console.log(isAuthenticated)}
@@ -120,7 +120,6 @@ const LoginLogout = () => {
                 {isAuthenticated && <Redirect to='/movieslist' />}
                 <div>{isAuthenticated && <AuthPage isAuthenticated />}</div>
                 <div>{isAuthenticated && <button onClick={logoutFunction}>Logout</button>}</div> */}
-                <div>hi</div>
                 <div>{store.getState() && 
                     <Router>
                         {console.log('hitting')}

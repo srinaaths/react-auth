@@ -1,0 +1,12 @@
+.main-container-class {
+    display: flex;
+
+}
+
+.link-class {
+    border: 1px solid brown;
+    background-color: burlywood;
+    padding: 15px;
+    text-decoration: none;
+    height: 20px;
+}

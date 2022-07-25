@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import store from './redux-components/store';
 const MovieRating = ({movie}) => {
     console.log(movie);
     const [movies, setMovies] = useState([])
@@ -14,7 +15,7 @@ const MovieRating = ({movie}) => {
           rating: rating,
           review: review,
           movieId: movieId,
-          userId: 1
+          userId: store.getState().id
         }
         console.log('data is ' + data);
       const res = await axios.post('http://localhost:8080/addrating', data)

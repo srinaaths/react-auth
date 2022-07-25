@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import './registration.scss'
 
 const Registration = () => {
     const [usernameReg, setUsernameReg] = useState('')
@@ -30,13 +31,13 @@ const Registration = () => {
                 <h2> Registration</h2>
                 <div className="user-input-class">
                     <label htmlFor="">Name</label>
-                    <input type="text" onChange={usernameRegUpdate} /> <br /> <br />
+                    <input type="text" placeholder='name' onChange={usernameRegUpdate} /> <br /> <br />
                 </div>
                 <div className="user-input-class">
                     <label htmlFor="">Password</label>
-                    <input type="password" onChange={passwordRegUpdate} /> <br /> <br />
+                    <input type="password" placeholder='password' onChange={passwordRegUpdate} /> <br /> <br />
                 </div>
-                <input type="submit" value="Register" />
+                <input class='submit-button' type="submit" value="Register" />
             </form>
         </div>
     )

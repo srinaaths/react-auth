@@ -1,9 +1,9 @@
-// const inititalState = {
-//     id: null,
-//     isAdmin: false,
-//     authStatus: false,
-//     token: null
-// }
+const inititalState = {
+    id: null,
+    isAdmin: false,
+    authStatus: false,
+    token: null
+}
 const reducer = (state = null, action) => {
     switch (action.type) {
         case 'USER_LOGIN':

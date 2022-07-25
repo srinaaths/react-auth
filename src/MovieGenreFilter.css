@@ -1,0 +1,27 @@
+:root {
+}
+
+.main-container-class {
+    display: flex;
+    align-items: center;
+    /* overflow: hidden; */
+}
+
+.options-class {
+    background-color: cornflowerblue;
+    padding: 15px;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+.submit-class {
+    background-color: blueviolet;
+    border-radius: 25%;
+    padding: 20px;
+    margin: 20px;
+}
+
+.movie-container {
+    display: flex;
+    flex-direction: row;
+}

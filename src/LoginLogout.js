@@ -10,6 +10,7 @@ import './loginLogout.scss'
 import AppMain from "./AppMain"
 import Registration from "./Registration"
 import Login from "./Login"
+import Home from "./Home"
 
 const LoginLogout = () => {
 
@@ -123,8 +124,8 @@ const LoginLogout = () => {
                 <div>{store.getState() && 
                     <Router>
                         {console.log('hitting')}
-                        <Route path='/' component={AppMain}></Route>
-                        <Link to='/'>Go to home page</Link>
+                        <Route path='/home' component={Home}></Route>
+                        <Link to='/home'>Go to home page</Link>
                     </Router>
                 }</div>
             </Router>

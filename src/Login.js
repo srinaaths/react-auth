@@ -1,20 +1,22 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Redirect, useHistory} from 'react-router-dom'
 import AppMain from './AppMain'
 import store from './redux-components/store'
 import './Login.css'
 import './login.scss'
-
+import Home from './Home'
 
 const Login = () => {
+    let history = useHistory()
+    const [redirect, setRedirect] = useState(false)
     const [usernameReg, setUsernameReg] = useState('')
     const [username, setUsername] = useState('')
     const [passwordReg, setPasswordReg] = useState('')
     const [password, setPassword] = useState('')
     const [loginStatus, setLoginStatus] = useState(false)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    
+
     let userIdentity = null;
 
     const usernameRegUpdate = (event) => {
@@ -61,6 +63,9 @@ const Login = () => {
             else {
                 setLoginStatus(true)
                 localStorage.setItem('token', res.data.token)
+                localStorage.setItem('user', (res.data.result.id));
+                console.log('res data is ');
+                console.log(res.data);
                 userAuthenticated();
             }
         } catch (error) {
@@ -95,6 +100,7 @@ const Login = () => {
                 }
             })
             console.log(store.getState());
+            setRedirect(true)
         }
         else {
             console.log('auth set to false');
@@ -102,34 +108,37 @@ const Login = () => {
             store.dispatch({ type: 'USER_LOGOUT' })
         }
     }
-  return (
-    <div className='main-container-class'>
-    {!isAuthenticated ? 
-   (             <div>
-                <form action="" className="reg-form-class" onSubmit={(e) => userCheck(e)}>
-                <h2 > Login</h2>
-                    <div className="user-input-class">
-                    <label htmlFor="">Name</label>
-                    <input type="text" onChange={usernameUpdate} /> <br /> <br />
-</div>
-                    <div className="user-input-class">
-                    <label htmlFor="">Password</label>
-                    <input type="password" onChange={passwordUpdate} /> <br /> <br />
-</div>
-                    <input class='submit-button' type="submit" value="Login" />
-                </form>
-</div>)
- : 
-                <div>{isAuthenticated && 
-                    <Router>
-                        {console.log('hitting')}
-                        <Route path='/' component={AppMain}></Route>
-                        <Link to='/'>Go to home page</Link>
-                    </Router>
+    return (
+        <div className='main-container-class'>
+            {!isAuthenticated ?
+                (<div>
+                    <form action="" className="reg-form-class" onSubmit={(e) => userCheck(e)}>
+                        <h2 > Login</h2>
+                        <div className="user-input-class">
+                            <label htmlFor="">Name</label>
+                            <input type="text" onChange={usernameUpdate} /> <br /> <br />
+                        </div>
+                        <div className="user-input-class">
+                            <label htmlFor="">Password</label>
+                            <input type="password" onChange={passwordUpdate} /> <br /> <br />
+                        </div>
+                        <input class='submit-button' type="submit" value="Login" />
+                    </form>
+                </div>)
+                :
+                <div>{isAuthenticated &&
+                    <div>
+                        <Home />
+                    </div>
+                    // <Router>
+                    //     {console.log('hitting')}
+                    //     <Route path='/' component={Home}></Route>
+                    //     <Link to='/'>Go to home page</Link>
+                    // </Router>
                 }</div>
             }
-                </div>
-  )
+        </div>
+    )
 }
 
 export default Login

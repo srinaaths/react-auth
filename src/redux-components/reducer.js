@@ -17,6 +17,7 @@ const reducer = (state = null, action) => {
 
         case 'USER_LOGOUT':
             console.log('in logout');
+            localStorage.clear();
             return null;
 
         default:

@@ -10,3 +10,17 @@
     /* margin: 20px; */
     color: gray;
 }
+
+.movie-holder {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    img {
+        height: 200px;
+        width: 200px;
+    }
+}
+
+.text-area {
+    z-index: 999;
+}

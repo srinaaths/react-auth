@@ -67,6 +67,7 @@ const Login = () => {
                 console.log('res data is ');
                 console.log(res.data);
                 userAuthenticated();
+                window.location.reload(true)
             }
         } catch (error) {
             console.log(error);

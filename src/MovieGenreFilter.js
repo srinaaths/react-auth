@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import MovieEle from './MovieEle'
-import './MovieGenreFilter.css'
+import './MovieGenreFilter.scss'
 
 const MovieGenreFilter = () => {
     const [movies, setMovies] = useState([])
@@ -41,14 +41,14 @@ const MovieGenreFilter = () => {
             {console.log(moviesByGenre)}
             {/* <input type="text" onChange={e => genreChange(e)}/> */}
             <select className='options-class' name="" id="" onChange={e => genreChange(e)}>
-                <option value="Adventure">Adventure</option>
-                <option value="Action">Action</option>
-                <option value="Drama">Drama</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Thriller">Thriller</option>
+                <option class='option' value="Adventure">Adventure</option>
+                <option class='option' value="Action">Action</option>
+                <option class='option' value="Drama">Drama</option>
+                <option class='option' value="Comedy">Comedy</option>
+                <option class='option' value="Thriller">Thriller</option>
             </select>
-            <div className="movie-container">
                 <input className='submit-class' value='Search Movies' type="submit" onClick={filterByGenre} />
+            <div className="movie-container">
                 {moviesByGenre.map(movie => { return (<MovieEle key={movie.id} movie={movie}></MovieEle>) })}
             </div>
         </div>

@@ -85,7 +85,7 @@ const AppMain = () => {
       {loggedIn ? 
         <Router >
           {console.log('taking to home page...')}
-          <div >
+          <div className='home-class'>
             {/* <Link to='/app'>Login/ Register</Link>
             <div className='div-main-class'>
               <Link className='link-class' to='/movieByGenre'>Movie By Genre</Link>

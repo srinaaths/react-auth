@@ -11,7 +11,7 @@ import MovieSearch from './MovieSearch';
 import Profile from './Profile';
 import ProtectedRoute from './ProtectedRoute';
 import store from './redux-components/store';
-import './AppMain.scss'
+import './home.scss'
 import axios from 'axios';
 import PopularMovies from './PopularMovies';
 
@@ -71,11 +71,12 @@ const Home = () => {
         store.dispatch({ type: 'USER_LOGOUT' })
         console.log(store.getState());
         setLoggedIn(false)
+        window.location.reload(true)
     }
   return (
-          <div >
+          <div className='div-main-class'>
             {/* <Link to='/app'>Login/ Register</Link> */}
-            <div className='div-main-class'>
+            <div className='div-sub-class'> 
               <Link className='link-class' to='/movieByGenre'>Movie By Genre</Link>
               <Link className='link-class' to='/movieSearch'>Movie Search</Link>
               <Link className='link-class' to='/movieByDirector'>Movie By Director</Link>

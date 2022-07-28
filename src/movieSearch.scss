@@ -3,5 +3,27 @@
 //     }
 // }
 
-// .movie-container {
-// }
+.movie-container {
+    display: flex;
+    color: white;
+    overflow: hidden;
+    transition: 1s;
+}
+
+.movies-list-class {
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.back-icon {
+    color: yellow;
+}
+.forward-icon {
+    color: yellow;
+}
+.movie-ele {
+    display: flex;
+    flex-direction: row;
+}

@@ -7,7 +7,7 @@
     display: flex;
     color: white;
     overflow: hidden;
-    transition: 1s;
+    transition: 0.5s;
 }
 
 .movies-list-class {
@@ -18,10 +18,22 @@
 }
 
 .back-icon {
-    color: yellow;
+    color: black;
+    margin-top: 120px;
+    margin: 60px;
+    padding: 30px;
+    background-color: aquamarine;
+    border-radius: 33px;
+    cursor: pointer;
 }
 .forward-icon {
-    color: yellow;
+    color: black;
+    margin-top: 120px;
+    margin: 60px;
+    padding: 30px;
+    background-color: aquamarine;
+    border-radius: 33px;
+    cursor: pointer;
 }
 .movie-ele {
     display: flex;

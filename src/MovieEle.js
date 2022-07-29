@@ -6,6 +6,7 @@ import store from './redux-components/store'
 import axios from 'axios'
 
 const MovieEle = ({ movie }) => {
+  console.log(movie.id);
   let movieeId = movie.id;
   let movieName = movie.name;
   const [nameEnabled, setNameEnabled] = useState(false)

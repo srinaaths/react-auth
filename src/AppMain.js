@@ -109,7 +109,7 @@ const AppMain = () => {
         </Router> :
         <div className='main-container-class'>
           {/* u need to authorize */}
-          <h1 className='main-header-class'>Movies App</h1>
+          {/* <h1 className='main-header-class'>Movies App</h1> */}
           {console.log('taking to login page ...')}
           <App />
         </div>}

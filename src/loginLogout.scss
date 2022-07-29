@@ -6,6 +6,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    .main-header {
+        color: white;
+    }
+    .sub-header {
+        color: white;
+    }
     .link-class {
         background-color: rgb(78, 36, 36);
         color: white;

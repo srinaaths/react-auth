@@ -8,15 +8,25 @@ import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 function MovieSearch() {
     const [movies, setMovies] = useState([])
     const [searchText, setSearchText] = useState('')
+    const [isMoved, setIsMoved] = useState(false);
+    const [slideNumber, setSlideNumber] = useState(0);
+
     const listRef = useRef()
-    
+
     const handleClick = (direction) => {
+        setIsMoved(true);
         let distance = listRef.current.getBoundingClientRect().x - 50;
-        if(direction === 'left') {
+        console.log(slideNumber);
+        if (direction === 'left' && slideNumber > 0) {
+            setSlideNumber(slideNumber - 1);
+
             listRef.current.style.transform = `translateX(${230 + distance}px)`
         }
         console.log(distance)
-        if(direction === 'right') {
+        // console.log('size is ' + movies.length);
+        if (direction === 'right' && slideNumber < movies.length /5) {
+            setSlideNumber(slideNumber + 1);
+
             listRef.current.style.transform = `translateX(${-230 + distance}px)`
         }
     }
@@ -44,7 +54,7 @@ function MovieSearch() {
                         )
                     })}
                 </div>
-            <ArrowForwardIos className='forward-icon' onClick={() => handleClick('right')}></ArrowForwardIos>
+                <ArrowForwardIos className='forward-icon' onClick={() => handleClick('right')}></ArrowForwardIos>
             </div>
         </div>
     )

@@ -14,6 +14,7 @@ import store from './redux-components/store';
 import './home.scss'
 import axios from 'axios';
 import PopularMovies from './PopularMovies';
+import Featured from './Featured';
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -90,6 +91,7 @@ const Home = () => {
             <Route path='/movieByDirector' component={Directors}></Route>
             <Route path='/movieByActor' component={Actors}></Route>
             <Route path='/popular' component={PopularMovies}></Route>
+            {/* <Featured /> */}
             {/* <Route path='/logout' component={Logout}></Route> */}
           </div>
   )

@@ -6,14 +6,17 @@ import ReactPaginate from 'react-paginate';
 
 const PopularMovies = () => {
     const [popularMovies, setPopularMovies] = useState([])
-    const [pageCount, setPageCount] = useState(0);
+    const [movies, setMovies] = useState([])
+    const [pageCount, setPageCount] = useState(10);
     const [itemOffset, setItemOffset] = useState(0);
-    const itemsPerPage = 5;
+    const len = 50;
+    const itemsPerPage = 7;
     useEffect(() => {
         const fetchPopularMovies = async () => {
             try {
                 const res = await axios.get('http://localhost:8080/')
-                setPopularMovies(res.data);
+                // setPopularMovies(res.data);
+                setMovies(res.data)
             } catch (error) {
                 console.log(error.message);
             }
@@ -23,14 +26,21 @@ const PopularMovies = () => {
     }, [])
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
+        console.log('movies are ');
         console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-        setPopularMovies(popularMovies.slice(itemOffset, endOffset));
+        const func = async () => {
+            await setPopularMovies(popularMovies.slice(itemOffset, endOffset));
+        }
+        func();
         setPageCount(Math.ceil(popularMovies.length / itemsPerPage));
-      }, [itemOffset, itemsPerPage]);
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % popularMovies.length;
+        console.log(pageCount)
+    }, [itemOffset, itemsPerPage]);
+    const handlePageClick = (page) => {
+        console.log(page.selected);
+        console.log('len is ' + popularMovies.length);
+        const newOffset = (page.selected * itemsPerPage) % 50;
         console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
+            `User requested page number ${page.selected}, which is offset ${newOffset}`
         );
         setItemOffset(newOffset);
     };
@@ -55,10 +65,9 @@ const PopularMovies = () => {
                     breakLabel="..."
                     nextLabel="next >"
                     onPageChange={handlePageClick}
-                    pageRangeDisplayed={5}
-                    pageCount={pageCount}
+                    pageCount={50 / itemsPerPage}
                     previousLabel="< previous"
-                    // renderOnZeroPageCount={null}
+                    renderOnZeroPageCount={null}
                 />
             </div>
         </div>

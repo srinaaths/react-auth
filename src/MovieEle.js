@@ -130,7 +130,6 @@ const MovieEle = ({ movie }) => {
 
       {enabled && <MovieRating movie={movie} />}
     </div>)
-   
   )
 }
 

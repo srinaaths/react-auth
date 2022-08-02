@@ -21,6 +21,7 @@ const Registration = () => {
         try {
             const res = await axios.post('http://localhost:8080/adduser', user);
             console.log(res);
+            alert('registered')
         } catch (error) {
             console.log(error);
         }
@@ -30,8 +31,8 @@ const Registration = () => {
             <form action="" className="reg-form-class" onSubmit={(e) => submitFunction(e)}>
                 <h2> Registration</h2>
                 <div className="user-input-class">
-                    <label htmlFor="">Name</label>
-                    <input type="text" placeholder='name' onChange={usernameRegUpdate} /> <br /> <br />
+                    <label htmlFor="">Email</label>
+                    <input type="email" placeholder='email' onChange={usernameRegUpdate} /> <br /> <br />
                 </div>
                 <div className="user-input-class">
                     <label htmlFor="">Password</label>
